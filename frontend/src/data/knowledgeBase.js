@@ -1,0 +1,157 @@
+/**
+ * Base de Conhecimento Factual Oficial da MaisCacau (RAG)
+ * Contém cardápio, tabela de preços, regras de cálculo proporcional de mini brownies,
+ * história, fundadora Maria Eduarda, canais de atendimento e protocolos de suporte.
+ */
+export const knowledgeBase = {
+  empresa: "MaisCacau",
+  fundadora: "Maria Eduarda",
+  fundacao: "Agosto de 2026",
+  segmento: "Confeitaria e produção artesanal de brownies",
+  produto_principal: "Brownies recheados artesanais feitos à mão",
+  descricao: "A MaisCacau é uma empresa especializada na produção de brownies recheados artesanais, feitos à mão com cuidado, carinho, dedicação e atenção à qualidade. Fundada por Maria Eduarda em agosto de 2026.",
+  topicos: [
+    {
+      id: "sobre_historia",
+      perguntas_chave: [
+        "Quem é a MaisCacau?",
+        "Quem fundou a MaisCacau?",
+        "Qual é a história da empresa?",
+        "Quando a MaisCacau foi criada?",
+        "Quem é Maria Eduarda?",
+        "Como surgiu a MaisCacau?",
+        "Me conte sobre a MaisCacau",
+        "historia",
+        "fundacao",
+        "fundadora"
+      ],
+      resposta: "🤎 **Sobre a MaisCacau & Nossa História**\n\nA **MaisCacau** foi fundada em **agosto de 2026 por Maria Eduarda**.\n\n✨ **Como tudo começou:**\nInicialmente, a empresa nasceu com o objetivo de gerar uma fonte de renda para ajudar com as contas e despesas de casa. Com o passar do tempo e o carinho das pessoas, a MaisCacau conquistou cada vez mais clientes, pedidos, reconhecimento e vendas!\n\nAquilo que começou como uma necessidade financeira transformou-se em uma **verdadeira paixão, responsabilidade e objetivo de vida**: produzir cada brownie com dedicação artesanal para que cada cliente sinta o amor e o cuidado colocado em cada detalhe.\n\n💬 *\"MaisCacau nasceu de uma necessidade, cresceu com o carinho dos clientes e continua existindo para transformar amor e cuidado em brownies.\"*"
+    },
+    {
+      id: "sabores_cardapio",
+      perguntas_chave: [
+        "Quais são os sabores disponíveis?",
+        "Quais recheios vocês têm?",
+        "Qual o cardápio de brownies?",
+        "Quais os sabores de brownie recheado?",
+        "Cardápio",
+        "Sabores",
+        "recheios",
+        "sabor"
+      ],
+      resposta: "🍫 **Cardápio de Sabores — Brownies Recheados MaisCacau**\n\nNossos brownies são feitos à mão e contam com recheios extremamente cremosos e irresistíveis:\n\n1. 🍯 **Doce de Leite** — *Cremoso e tradicional*\n2. ☁️ **Merengue** — *Leve, delicado e aveludado*\n3. 🍫 **Chocolate Tradicional** — *Intenso e para os verdadeiros amantes de cacau*\n4. 🖤🤍 **Casadinho** — *A combinação perfeita de dois amores*\n5. 🍋 **Limão** — *O equilíbrio refrescante entre o cítrico e o doce*\n6. 🍈 **Maracujá** — *Toque tropical suave e marcante*\n7. 🤍 **Brigadeiro Branco** — *Macio, nobre e saboroso*\n8. 🍓 **Ninho com Morango** — *Combinação clássica que derrete na boca*\n9. 🥛 **Ninho Tradicional** — *Puro sabor do leite ninho cremoso*\n10. 🥜 **Paçoca** — *Sabor marcante de amendoim com textura especial*"
+    },
+    {
+      id: "precos_produtos",
+      perguntas_chave: [
+        "Quanto custa o brownie?",
+        "Qual o valor dos brownies?",
+        "Tabela de preços",
+        "Quanto custa o brownie recheado e o tradicional?",
+        "Preço unitário",
+        "Valores dos produtos",
+        "preco",
+        "preço",
+        "valor",
+        "quanto custa"
+      ],
+      resposta: "🏷️ **Valores & Tabela de Preços**\n\nTrabalhamos com produtos artesanais de alta qualidade com preços acessíveis:\n\n- 🟫 **Brownie sem recheio:** Entre **R$ 7,00 e R$ 9,00** por unidade.\n- 🍫 **Brownie recheado:** Entre **R$ 10,00 e R$ 14,00** por unidade *(o valor varia conforme o sabor e tipo de recheio)*.\n\n🎁 *Todos os nossos brownies são preparados artesanalmente com ingredientes selecionados e muito capricho!*"
+    },
+    {
+      id: "mini_brownies_encomendas",
+      perguntas_chave: [
+        "Vocês fazem encomendas para festas?",
+        "Quanto custa o cento de mini brownies?",
+        "Como funciona a encomenda de mini brownies?",
+        "Qual o valor de 50 mini brownies?",
+        "Qual o valor de 100 mini brownies?",
+        "Qual o valor de 200 mini brownies?",
+        "Orçamento de mini brownies para eventos",
+        "cento",
+        "festa",
+        "evento",
+        "mini brownies",
+        "encomenda"
+      ],
+      resposta: "🎉 **Encomendas de Mini Brownies para Eventos e Festas**\n\nA MaisCacau produz mini brownies perfeitos para casamentos, aniversários e comemorações!\n\n📐 **Regra de Cálculo Proporcional:**\n**Cada 100 mini brownies (1 cento) = R$ 140,00** *(R$ 1,40 por unidade)*.\n\n📋 **Tabela de Referência:**\n- 🧁 **50 unidades:** R$ 70,00\n- 🧁 **100 unidades (1 cento):** R$ 140,00\n- 🧁 **150 unidades:** R$ 210,00\n- 🧁 **200 unidades (2 centos):** R$ 280,00\n- 🧁 **250 unidades:** R$ 350,00\n- 🧁 **300 unidades (3 centos):** R$ 420,00\n- 🧁 **400 unidades (4 centos):** R$ 560,00\n- 🧁 **500 unidades (5 centos):** R$ 700,00\n\n💡 *Calculamos qualquer quantidade sob medida mantendo a proporção de R$ 140,00 a cada 100 unidades.*"
+    },
+    {
+      id: "significado_nome",
+      perguntas_chave: [
+        "O que significa o nome MaisCacau?",
+        "Por que a empresa se chama MaisCacau?",
+        "Qual a origem do nome MaisCacau?",
+        "Significado do nome",
+        "origem do nome"
+      ],
+      resposta: "✨ **O Significado do Nome MaisCacau**\n\nO nome **MaisCacau** nasceu da própria essência e identidade do brownie:\n\n- 🍫 **\"Cacau\":** Representa o ingrediente nobre central, a alma do chocolate e do brownie autêntico.\n- ➕ **\"Mais\":** Representa o recheio que vem a mais, tornando a experiência completa, especial e mais gostosa.\n\nAssim, **MaisCacau** transmite o compromisso de entregar sempre: **mais sabor, mais recheio, mais carinho e mais qualidade** em cada mordida!"
+    },
+    {
+      id: "proposito_valores_diferencial",
+      perguntas_chave: [
+        "Quais são os diferenciais da MaisCacau?",
+        "Quais os valores da empresa?",
+        "Qual o propósito da MaisCacau?",
+        "O que torna o brownie da MaisCacau especial?",
+        "Como é a produção dos brownies?",
+        "valores",
+        "proposito",
+        "propósito",
+        "diferencial"
+      ],
+      resposta: "⭐ **Propósito, Valores e Diferencial**\n\n🎯 **Nosso Propósito:**\nPassar amor e cuidado através dos brownies, transformando um doce simples em uma experiência inesquecível de sabor e afeto.\n\n💎 **Nossos Valores:**\n- 🌿 **Qualidade:** Ingredientes de primeira linha e atenção a cada detalhe.\n- 🤎 **Carinho & Amor:** Dedicação e paixão em cada fornada.\n- 🤲 **Artesanato:** Produção 100% feita à mão.\n- 🌟 **Satisfação do Cliente:** Foco em encantar quem escolhe a MaisCacau.\n- 📈 **Crescimento Sustentável:** Evoluir sem jamais perder nossa essência artesanal.\n\n✨ **Nossa Fórmula Diferencial:**\n*Brownie feito à mão + Recheio especial + Cuidado em cada detalhe = MaisCacau.*"
+    },
+    {
+      id: "identidade_visual",
+      perguntas_chave: [
+        "Como é a identidade visual da MaisCacau?",
+        "Quais as cores da marca?",
+        "Como é o logo da MaisCacau?",
+        "Identidade visual e conceito",
+        "cores",
+        "logo"
+      ],
+      resposta: "🎨 **Identidade Visual da MaisCacau**\n\nNossa identidade é inspirada na confeitaria artesanal premium e no universo do chocolate:\n\n- 🍒 **Vermelho escuro / tom cereja:** Cor de fundo acolhedora e sofisticada.\n- 🧈 **Amarelo manteiga / creme:** Representa os recheios aveludados e cremosos.\n- 🍫 **Marrom Chocolate:** A força e a pureza do cacau.\n\n🖼️ **Conceito da Logo:**\nApresenta uma unidade de brownie com a clássica casquinha craquelada, o nome **MaisCacau** destacado em tom de amarelo manteiga e delicadas gotas de chocolate caindo, transmitindo indulgência e carinho."
+    },
+    {
+      id: "atendimento_problemas",
+      perguntas_chave: [
+        "Tenho um problema com meu pedido",
+        "Meu pedido atrasou",
+        "Recebi o sabor errado",
+        "Meu brownie chegou danificado",
+        "Problema com a embalagem",
+        "Produto diferente do que pedi",
+        "Quero reclamar",
+        "Como faço uma reclamação?",
+        "Preciso de ajuda com um problema",
+        "Meu pedido veio errado",
+        "Brownie quebrado",
+        "Encomenda com problema",
+        "Não recebi meu pedido",
+        "Como entro em contato?",
+        "Contato da MaisCacau",
+        "Telefone",
+        "WhatsApp",
+        "Instagram",
+        "reclamacao",
+        "atraso",
+        "troca",
+        "defeito"
+      ],
+      resposta: "🤎 **Atendimento de Problemas — MaisCacau**\n\nSentimos muito que você esteja passando por isso! A sua satisfação é muito importante para nós e queremos resolver da melhor forma possível. 💛\n\n🔍 **Tipos de problemas que podemos ajudar:**\n- 📦 Pedido atrasado\n- 🔄 Sabor diferente do solicitado\n- 💔 Brownie danificado durante o transporte\n- 📋 Problema com a embalagem\n- ❓ Produto recebido diferente do pedido\n- 💰 Dúvidas sobre valores\n- 🎉 Problemas com encomendas\n- 📝 Reclamações sobre o produto\n\n✨ **Como vamos te ajudar:**\n1. Nos conte exatamente o que aconteceu\n2. Vamos buscar a melhor solução para você\n3. Se necessário, encaminharemos para atendimento direto com a Maria Eduarda\n\n📞 **Canais Oficiais de Contato:**\n- 📸 **Instagram:** [@maiscacauoficial](https://instagram.com/maiscacauoficial)\n- 📱 **WhatsApp:** **(11) 39467-8397**\n\n💬 *A MaisCacau preza por cada cliente e quer que você se sinta ouvido, respeitado e bem atendido. Estamos aqui para resolver! 🤎*"
+    }
+  ],
+  canais_contato: {
+    instagram: "@maiscacauoficial",
+    instagram_url: "https://instagram.com/maiscacauoficial",
+    whatsapp: "(11) 39467-8397"
+  },
+  faq_rapido: [
+    "Quais são os sabores disponíveis?",
+    "Quanto custa a encomenda de mini brownies?",
+    "Qual o valor dos brownies recheados?",
+    "Me conte a história da MaisCacau!",
+    "Tenho um problema com meu pedido"
+  ]
+}

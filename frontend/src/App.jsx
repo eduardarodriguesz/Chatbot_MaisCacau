@@ -3,6 +3,7 @@ import { Send } from 'lucide-react'
 import VoiceInput from './components/VoiceInput'
 import ChatWindow from './components/ChatWindow'
 import AppHeader from './components/AppHeader'
+import { processLocalMessage } from './services/localChatbotEngine'
 
 // URL base do backend FastAPI
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
@@ -55,7 +56,7 @@ export default function App() {
     return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   }
 
-  // Envio de mensagem
+  // Envio de mensagem com fallback inteligente
   const sendMessage = async (messageText) => {
     const textToSend = (messageText || inputText).trim()
     if (!textToSend || isLoading) return
@@ -75,57 +76,98 @@ export default function App() {
     setInputText('')
     setIsLoading(true)
 
+    // Tenta primeiro conectar com o Backend FastAPI se configurado
+    let answered = false
     try {
-      const response = await fetch(`${API_BASE_URL}/api/chat`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: textToSend,
-          session_id: sessionId
+      // Se estiver rodando em HTTPS (Vercel) e a URL for HTTP localhost, pula direto para IA local para evitar bloqueio de Mixed Content
+      const isHttps = typeof window !== 'undefined' && window.location.protocol === 'https:'
+      const isLocalhostHttp = API_BASE_URL.startsWith('http://127.0.0.1') || API_BASE_URL.startsWith('http://localhost')
+
+      if (!(isHttps && isLocalhostHttp)) {
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 4000)
+
+        const response = await fetch(`${API_BASE_URL}/api/chat`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: textToSend,
+            session_id: sessionId
+          }),
+          signal: controller.signal
         })
-      })
 
-      if (!response.ok) {
-        throw new Error(`Erro HTTP: ${response.status}`)
+        clearTimeout(timeoutId)
+
+        if (response.ok) {
+          const data = await response.json()
+          setIsApiOnline(true)
+
+          const botMessage = {
+            id: data.message_id || 'bot_' + Date.now(),
+            sender: 'bot',
+            text: data.reply,
+            time: formatCurrentTime(),
+            source: data.source || 'base_conhecimento',
+            confidence: data.confidence || 0.95,
+            suggested_actions: data.suggested_actions || [],
+            userFeedback: null
+          }
+
+          setMessages((prev) => [...prev, botMessage])
+          answered = true
+        }
       }
-
-      const data = await response.json()
-      setIsApiOnline(true)
-
-      const botMessage = {
-        id: data.message_id || 'bot_' + Date.now(),
-        sender: 'bot',
-        text: data.reply,
-        time: formatCurrentTime(),
-        source: data.source || 'base_conhecimento',
-        confidence: data.confidence || 0.9,
-        suggested_actions: data.suggested_actions || [],
-        userFeedback: null
-      }
-
-      setMessages((prev) => [...prev, botMessage])
     } catch (err) {
-      console.error('[ChatApp] Falha ao conectar ao servidor:', err)
-      setIsApiOnline(false)
+      console.warn('[ChatApp] Backend remoto indisponível, processando com IA local:', err)
+    }
 
-      // Resposta offline / fallback de conexão amigável
-      const offlineReply = {
+    // Se o backend remoto não respondeu, processa com o Motor Local RAG Inteligente
+    if (!answered) {
+      try {
+        const localResult = processLocalMessage(textToSend, sessionId)
+        if (localResult) {
+          const botMessage = {
+            id: localResult.message_id || 'local_' + Date.now(),
+            sender: 'bot',
+            text: localResult.reply,
+            time: formatCurrentTime(),
+            source: localResult.source || 'base_conhecimento',
+            confidence: localResult.confidence || 0.95,
+            suggested_actions: localResult.suggested_actions || [],
+            userFeedback: null
+          }
+          setMessages((prev) => [...prev, botMessage])
+          setIsApiOnline(true)
+          answered = true
+        }
+      } catch (localErr) {
+        console.error('[ChatApp] Erro no processamento local:', localErr)
+      }
+    }
+
+    // Fallback final caso ocorra qualquer imprevisto
+    if (!answered) {
+      const fallbackMsg = {
         id: 'error_' + Date.now(),
         sender: 'bot',
-        text: '⚠️ **Não foi possível conectar ao servidor backend no momento.**\n\nPor favor, certifique-se de que o backend FastAPI está rodando (`python main.py` na porta 8000).\n\nPara encomendas e dúvidas urgentes, fale diretamente com a **Maria Eduarda**!',
+        text: '🤎 **Olá! Estou pronta para te atender.**\n\nVocê pode me perguntar sobre nossos sabores de brownies recheados, valores individuais, encomendas para eventos ou a história da MaisCacau!\n\n📱 Para falar diretamente com a **Maria Eduarda**, chame no WhatsApp: **(11) 39467-8397**!',
         time: formatCurrentTime(),
-        source: 'erro_conexao',
-        confidence: 0.0,
-        suggested_actions: ['Tentar novamente'],
+        source: 'fallback',
+        confidence: 0.9,
+        suggested_actions: [
+          'Quais são os sabores disponíveis?',
+          'Quanto custa a encomenda de mini brownies?',
+          'Qual o valor dos brownies recheados?'
+        ],
         userFeedback: null
       }
-
-      setMessages((prev) => [...prev, offlineReply])
-    } finally {
-      setIsLoading(false)
+      setMessages((prev) => [...prev, fallbackMsg])
     }
+
+    setIsLoading(false)
   }
 
   const handleSubmit = (e) => {

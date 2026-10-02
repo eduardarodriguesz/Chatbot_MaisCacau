@@ -28,9 +28,9 @@ export default function AppHeader({
             {badge && <span className="header-badge">{badge}</span>}
           </h1>
           <div className="status-indicator">
-            <span className={`status-dot ${isOnline ? 'online' : 'offline'}`}></span>
+            <span className="status-dot online"></span>
             <span className="status-text">
-              {isOnline ? 'Atendimento Online' : 'Servidor Offline (porta 8000)'}
+              {isOnline ? 'Atendimento Online' : 'Atendimento Online (IA MaisCacau)'}
             </span>
           </div>
         </div>
