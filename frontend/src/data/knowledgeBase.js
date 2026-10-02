@@ -114,8 +114,8 @@ export const knowledgeBase = {
       resposta: "🎨 **Identidade Visual da MaisCacau**\n\nNossa identidade é inspirada na confeitaria artesanal premium e no universo do chocolate:\n\n- 🍒 **Vermelho escuro / tom cereja:** Cor de fundo acolhedora e sofisticada.\n- 🧈 **Amarelo manteiga / creme:** Representa os recheios aveludados e cremosos.\n- 🍫 **Marrom Chocolate:** A força e a pureza do cacau.\n\n🖼️ **Conceito da Logo:**\nApresenta uma unidade de brownie com a clássica casquinha craquelada, o nome **MaisCacau** destacado em tom de amarelo manteiga e delicadas gotas de chocolate caindo, transmitindo indulgência e carinho."
     },
     {
-      id: "atendimento_problemas",
-      perguntas_chave: [
+      "id": "atendimento_problemas",
+      "perguntas_chave": [
         "Tenho um problema com meu pedido",
         "Meu pedido atrasou",
         "Recebi o sabor errado",
@@ -139,7 +139,20 @@ export const knowledgeBase = {
         "troca",
         "defeito"
       ],
-      resposta: "🤎 **Atendimento de Problemas — MaisCacau**\n\nSentimos muito que você esteja passando por isso! A sua satisfação é muito importante para nós e queremos resolver da melhor forma possível. 💛\n\n🔍 **Tipos de problemas que podemos ajudar:**\n- 📦 Pedido atrasado\n- 🔄 Sabor diferente do solicitado\n- 💔 Brownie danificado durante o transporte\n- 📋 Problema com a embalagem\n- ❓ Produto recebido diferente do pedido\n- 💰 Dúvidas sobre valores\n- 🎉 Problemas com encomendas\n- 📝 Reclamações sobre o produto\n\n✨ **Como vamos te ajudar:**\n1. Nos conte exatamente o que aconteceu\n2. Vamos buscar a melhor solução para você\n3. Se necessário, encaminharemos para atendimento direto com a Maria Eduarda\n\n📞 **Canais Oficiais de Contato:**\n- 📸 **Instagram:** [@maiscacauoficial](https://instagram.com/maiscacauoficial)\n- 📱 **WhatsApp:** **(11) 39467-8397**\n\n💬 *A MaisCacau preza por cada cliente e quer que você se sinta ouvido, respeitado e bem atendido. Estamos aqui para resolver! 🤎*"
+      "resposta": "🤎 **Atendimento de Problemas — MaisCacau**\n\nSentimos muito que você esteja passando por isso! A sua satisfação é muito importante para nós e queremos resolver da melhor forma possível. 💛\n\n🔍 **Tipos de problemas que podemos ajudar:**\n- 📦 Pedido atrasado\n- 🔄 Sabor diferente do solicitado\n- 💔 Brownie danificado durante o transporte\n- 📋 Problema com a embalagem\n- ❓ Produto recebido diferente do pedido\n- 💰 Dúvidas sobre valores\n- 🎉 Problemas com encomendas\n- 📝 Reclamações sobre o produto\n\n✨ **Como vamos te ajudar:**\n1. Nos conte exatamente o que aconteceu\n2. Vamos buscar a melhor solução para você\n3. Se necessário, encaminharemos para atendimento direto com a Maria Eduarda\n\n📞 **Canais Oficiais de Contato:**\n- 📸 **Instagram:** [@maiscacauoficial](https://instagram.com/maiscacauoficial)\n- 📱 **WhatsApp:** **(11) 39467-8397**\n\n💬 *A MaisCacau preza por cada cliente e quer que você se sinta ouvido, respeitado e bem atendido. Estamos aqui para resolver! 🤎*"
+    },
+    {
+      "id": "processo_producao",
+      "perguntas_chave": [
+        "Quer descobrir como um brownie é produzido?",
+        "Como um brownie é produzido?",
+        "Como é feito o brownie?",
+        "Como é a produção dos brownies?",
+        "Processo de produção do brownie",
+        "Passo a passo da produção artesanal",
+        "Como a Maria Eduarda faz os brownies?"
+      ],
+      "resposta": "👩‍🍳 **Como um Brownie Artesanal MaisCacau é Produzido!** 🍫✨\n\nCada brownie da **MaisCacau** é feito à mão pela **Maria Eduarda**, seguindo um processo artesanal minucioso e cheio de carinho em 5 etapas especiais:\n\n1. 🥣 **Preparação da Massa dos Sonhos:**\n   Derretemos o chocolate nobre com manteiga de primeira qualidade e emulsionamos com ovos e açúcar até criar a aveludada base que garante a inconfundível **casquinha craquelada e brilhante**.\n\n2. 🔥 **Assamento com Ponto Perfeito:**\n   Vai ao forno em temperatura e tempo rigorosamente controlados para que o exterior fique firme e o **interior permaneça incrivelmente úmido, macio e chocolatudo (fudgy)**.\n\n3. ❄️ **Resfriamento & Descanso:**\n   O brownie descansa com paciência para atingir a estrutura ideal antes de ser manuseado, preservando todo o sabor e textura.\n\n4. 📐 **Corte Artesanal Preciso:**\n   Cada unidade ou mini brownie é cortada à mão com todo o capricho para garantir formato perfeito e uniforme.\n\n5. 🍯 **Recheio Generoso & Finalização:**\n   Aplicamos fartas camadas dos nossos recheios artesanais cremosos (Doce de Leite, Ninho, Brigadeiro, etc.), embalando cada pedaço com carinho e afeto!\n\n💬 *\"Brownie feito à mão + recheio especial + cuidado em cada detalhe = MaisCacau!\"*"
     }
   ],
   canais_contato: {
@@ -151,6 +164,7 @@ export const knowledgeBase = {
     "Quais são os sabores disponíveis?",
     "Quanto custa a encomenda de mini brownies?",
     "Qual o valor dos brownies recheados?",
+    "👩‍🍳 Quer descobrir como um brownie é produzido?",
     "Me conte a história da MaisCacau!",
     "Tenho um problema com meu pedido"
   ]

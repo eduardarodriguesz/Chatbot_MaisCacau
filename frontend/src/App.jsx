@@ -3,12 +3,18 @@ import { Send } from 'lucide-react'
 import VoiceInput from './components/VoiceInput'
 import ChatWindow from './components/ChatWindow'
 import AppHeader from './components/AppHeader'
+import IntroScreen from './components/IntroScreen'
+import FlavorsView from './components/FlavorsView'
+import RecipesView from './components/RecipesView'
+import GalleryView from './components/GalleryView'
 import { processLocalMessage } from './services/localChatbotEngine'
 
 // URL base do backend FastAPI
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
 
 export default function App() {
+  const [showIntro, setShowIntro] = useState(true)
+  const [activeTab, setActiveTab] = useState('chat') // 'chat' | 'flavors' | 'recipes' | 'gallery'
   const [sessionId] = useState(() => 'sess_' + Math.random().toString(36).substring(2, 9))
   const [messages, setMessages] = useState([
     {
@@ -22,6 +28,7 @@ export default function App() {
         'Quais são os sabores disponíveis?',
         'Quanto custa a encomenda de mini brownies?',
         'Qual o valor dos brownies recheados?',
+        '👩‍🍳 Quer descobrir como um brownie é produzido?',
         'Me conte a história da MaisCacau!'
       ],
       userFeedback: null // 'like' | 'dislike' | null
@@ -61,6 +68,11 @@ export default function App() {
     const textToSend = (messageText || inputText).trim()
     if (!textToSend || isLoading) return
 
+    // Garante que o usuário veja a aba do chat se enviou uma pergunta
+    if (activeTab !== 'chat') {
+      setActiveTab('chat')
+    }
+
     const userMessageId = 'user_' + Date.now()
     const newMessages = [
       ...messages,
@@ -79,7 +91,6 @@ export default function App() {
     // Tenta primeiro conectar com o Backend FastAPI se configurado
     let answered = false
     try {
-      // Se estiver rodando em HTTPS (Vercel) e a URL for HTTP localhost, pula direto para IA local para evitar bloqueio de Mixed Content
       const isHttps = typeof window !== 'undefined' && window.location.protocol === 'https:'
       const isLocalhostHttp = API_BASE_URL.startsWith('http://127.0.0.1') || API_BASE_URL.startsWith('http://localhost')
 
@@ -160,7 +171,8 @@ export default function App() {
         suggested_actions: [
           'Quais são os sabores disponíveis?',
           'Quanto custa a encomenda de mini brownies?',
-          'Qual o valor dos brownies recheados?'
+          'Qual o valor dos brownies recheados?',
+          '👩‍🍳 Quer descobrir como um brownie é produzido?'
         ],
         userFeedback: null
       }
@@ -179,14 +191,12 @@ export default function App() {
   const handleVoiceTranscript = (transcript) => {
     if (transcript) {
       setInputText(transcript)
-      // Envia diretamente a transcrição para a IA
       sendMessage(transcript)
     }
   }
 
   // Registro de Feedback (Like / Dislike)
   const handleFeedback = async (messageId, isPositive) => {
-    // Atualiza estado local imediatamente
     setMessages((prev) =>
       prev.map((msg) =>
         msg.id === messageId
@@ -209,52 +219,86 @@ export default function App() {
     }
   }
 
-
+  // Dispara uma pergunta originada de outra aba (Sabores, Receitas, Galeria)
+  const handleAskFromTab = (questionText) => {
+    setActiveTab('chat')
+    sendMessage(questionText)
+  }
 
   return (
     <div className="chat-layout">
-      {/* 1. Cabeçalho (AppHeader) */}
-      <AppHeader isOnline={isApiOnline} />
+      {/* 1. Tela de Introdução Animada */}
+      {showIntro && (
+        <IntroScreen onEnter={() => setShowIntro(false)} />
+      )}
 
-      {/* 2. Container de Mensagens (ChatWindow) */}
-      <ChatWindow
-        messages={messages}
-        isLoading={isLoading}
-        onSendMessage={sendMessage}
-        onFeedback={handleFeedback}
+      {/* 2. Cabeçalho com Navegação por Abas */}
+      <AppHeader
+        isOnline={isApiOnline}
+        activeTab={activeTab}
+        onTabChange={(tabId) => setActiveTab(tabId)}
+        onOpenIntro={() => setShowIntro(true)}
       />
 
-      {/* 3. Rodapé com Entrada de Texto, Botão de Voz e Envio */}
-      <footer className="input-area">
-        <form onSubmit={handleSubmit} className="input-form">
-          <input
-            type="text"
-            className="chat-input"
-            placeholder="Pergunte sobre sabores, encomendas de mini brownies..."
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            disabled={isLoading}
-            autoFocus
-          />
+      {/* 3. Renderização Dinâmica do Conteúdo das Abas */}
+      <main className="tab-content-area">
+        {/* ABA 1: CHATBOT ATENDIMENTO OFICIAL */}
+        {activeTab === 'chat' && (
+          <div className="chat-tab-wrapper">
+            <ChatWindow
+              messages={messages}
+              isLoading={isLoading}
+              onSendMessage={sendMessage}
+              onFeedback={handleFeedback}
+            />
 
-          {/* Componente de Reconhecimento de Voz (STT) */}
-          <VoiceInput
-            onTranscript={handleVoiceTranscript}
-            disabled={isLoading}
-          />
+            {/* Rodapé com Entrada de Texto, Botão de Voz e Envio */}
+            <footer className="input-area">
+              <form onSubmit={handleSubmit} className="input-form">
+                <input
+                  type="text"
+                  className="chat-input"
+                  placeholder="Pergunte sobre sabores, encomendas de mini brownies..."
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
+                  disabled={isLoading}
+                  autoFocus
+                />
 
-          {/* Botão de Envio de Texto */}
-          <button
-            type="submit"
-            className="send-button"
-            disabled={!inputText.trim() || isLoading}
-            title="Enviar mensagem"
-            aria-label="Enviar mensagem"
-          >
-            <Send size={18} />
-          </button>
-        </form>
-      </footer>
+                <VoiceInput
+                  onTranscript={handleVoiceTranscript}
+                  disabled={isLoading}
+                />
+
+                <button
+                  type="submit"
+                  className="send-button"
+                  disabled={!inputText.trim() || isLoading}
+                  title="Enviar mensagem"
+                  aria-label="Enviar mensagem"
+                >
+                  <Send size={18} />
+                </button>
+              </form>
+            </footer>
+          </div>
+        )}
+
+        {/* ABA 2: NOSSOS SABORES */}
+        {activeTab === 'flavors' && (
+          <FlavorsView onAskInChat={handleAskFromTab} />
+        )}
+
+        {/* ABA 3: RECEITAS */}
+        {activeTab === 'recipes' && (
+          <RecipesView onAskInChat={handleAskFromTab} />
+        )}
+
+        {/* ABA 4: GALERIA */}
+        {activeTab === 'gallery' && (
+          <GalleryView onAskInChat={handleAskFromTab} />
+        )}
+      </main>
     </div>
   )
 }

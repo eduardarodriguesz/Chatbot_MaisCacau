@@ -758,3 +758,1167 @@ body {
     padding: 12px 16px 16px;
   }
 }
+
+/* ==========================================================================
+   14. NAVEGAÇÃO POR ABAS NO HEADER
+   ========================================================================== */
+.header-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-brand {
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.header-brand:hover {
+  opacity: 0.9;
+}
+
+.header-intro-replay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(254, 240, 138, 0.08);
+  border: 1px solid var(--border-glass-subtle);
+  color: var(--accent-butter);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.header-intro-replay-btn:hover {
+  background: rgba(254, 240, 138, 0.18);
+  border-color: var(--border-glass-accent);
+  transform: translateY(-1px);
+}
+
+.header-tabs-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(254, 240, 138, 0.08);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.header-tabs-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.header-tab-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.header-tab-item:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.header-tab-item.active {
+  color: var(--accent-butter);
+  background: rgba(136, 19, 55, 0.4);
+  border-color: rgba(254, 240, 138, 0.25);
+  box-shadow: 0 0 15px rgba(136, 19, 55, 0.3);
+}
+
+.tab-indicator-line {
+  position: absolute;
+  bottom: -2px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: var(--gradient-brand);
+  border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   15. ÁREA DE CONTEÚDO DAS ABAS & WRAPPERS
+   ========================================================================== */
+.tab-content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  position: relative;
+  background: transparent;
+}
+
+.chat-tab-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* ==========================================================================
+   16. TELA DE INTRODUÇÃO ANIMADA (INTRO SCREEN)
+   ========================================================================== */
+.intro-screen-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 30%, rgba(136, 19, 55, 0.85) 0%, rgba(26, 10, 13, 0.96) 80%);
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: pointer;
+  animation: fadeIn 0.4s ease-out forwards;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.intro-screen-overlay.fade-out {
+  opacity: 0;
+  transform: scale(0.98);
+  pointer-events: none;
+}
+
+.chocolate-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.choco-drop {
+  position: absolute;
+  font-size: 1.6rem;
+  opacity: 0.3;
+  animation: floatParticle 8s infinite linear;
+}
+
+.drop-1 { top: 15%; left: 12%; animation-duration: 9s; }
+.drop-2 { top: 25%; right: 15%; animation-duration: 12s; font-size: 1.2rem; }
+.drop-3 { bottom: 20%; left: 18%; animation-duration: 11s; }
+.drop-4 { bottom: 15%; right: 20%; animation-duration: 10s; }
+.drop-5 { top: 65%; left: 10%; animation-duration: 14s; }
+.drop-6 { top: 8%; right: 35%; animation-duration: 13s; }
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(15deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+.intro-card {
+  position: relative;
+  background: rgba(38, 15, 20, 0.85);
+  border: 1px solid rgba(254, 240, 138, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(136, 19, 55, 0.4);
+  animation: scaleUpCard 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleUpCard {
+  0% { transform: scale(0.92) translateY(15px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.intro-logo-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 18px;
+}
+
+.intro-logo-badge {
+  width: 88px;
+  height: 88px;
+  border-radius: 26px;
+  background: var(--gradient-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(250, 204, 21, 0.35);
+  position: relative;
+  animation: pulseLogo 3s ease-in-out infinite;
+}
+
+@keyframes pulseLogo {
+  0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(250, 204, 21, 0.35); }
+  50% { transform: scale(1.05); box-shadow: 0 14px 40px rgba(250, 204, 21, 0.55); }
+}
+
+.brownie-cake-icon {
+  font-size: 2.8rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+.sparkle-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--accent-butter);
+  color: #881337;
+  padding: 6px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 15px var(--accent-gold);
+  animation: spinSlow 10s linear infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.intro-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-butter);
+  background: rgba(254, 240, 138, 0.1);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 8px;
+  border: 1px solid rgba(254, 240, 138, 0.2);
+}
+
+.intro-brand-name {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.intro-brand-name span {
+  background: linear-gradient(135deg, var(--accent-butter) 0%, #facc15 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.intro-slogan {
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--accent-butter);
+  margin-bottom: 16px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.intro-description {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.intro-enter-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--gradient-brand);
+  color: #1a0a0d;
+  font-weight: 700;
+  font-size: 1.02rem;
+  padding: 14px 24px;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(250, 204, 21, 0.35);
+  transition: all var(--transition-fast);
+}
+
+.intro-enter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(250, 204, 21, 0.5);
+}
+
+.intro-footer-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 14px;
+}
+
+.heart-pulse {
+  color: #f43f5e;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+/* ==========================================================================
+   17. ABA "NOSSOS SABORES" (FLAVORS VIEW)
+   ========================================================================== */
+.flavors-container,
+.recipes-container,
+.gallery-container {
+  padding: 24px;
+  overflow-y: auto;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  animation: fadeIn 0.35s ease;
+}
+
+.flavors-header-banner,
+.recipes-header-banner,
+.gallery-header-banner {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-butter);
+  background: rgba(254, 240, 138, 0.1);
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(254, 240, 138, 0.2);
+  margin-bottom: 10px;
+}
+
+.flavors-header-banner h2,
+.recipes-header-banner h2,
+.gallery-header-banner h2 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.flavors-header-banner p,
+.recipes-header-banner p,
+.gallery-header-banner p {
+  color: var(--text-secondary);
+  font-size: 0.94rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.flavors-layout-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .flavors-layout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.flavors-selector-list h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.flavors-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.flavor-pill-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(38, 15, 20, 0.6);
+  border: 1px solid var(--border-glass-subtle);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-primary);
+}
+
+.flavor-pill-btn:hover {
+  background: rgba(136, 19, 55, 0.35);
+  border-color: rgba(254, 240, 138, 0.25);
+  transform: translateX(4px);
+}
+
+.flavor-pill-btn.active {
+  background: linear-gradient(135deg, rgba(136, 19, 55, 0.8) 0%, rgba(69, 26, 3, 0.8) 100%);
+  border-color: var(--accent-butter);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.pill-icon {
+  font-size: 1.5rem;
+}
+
+.pill-text-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pill-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.pill-tagline {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.flavor-pill-btn.active .pill-tagline {
+  color: var(--accent-cream);
+}
+
+.pill-check {
+  color: var(--accent-butter);
+}
+
+/* Detalhes do Sabor Selecionado */
+.flavor-detail-card {
+  background: rgba(26, 10, 13, 0.85);
+  border: 1px solid rgba(254, 240, 138, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--shadow-bubble);
+}
+
+.detail-card-header {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(254, 240, 138, 0.1);
+}
+
+.detail-title-icon-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.detail-icon-large {
+  font-size: 2.8rem;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid var(--border-glass-subtle);
+}
+
+.detail-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1a0a0d;
+  background: var(--accent-butter);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 6px;
+}
+
+.detail-title-icon-group h3 {
+  font-size: 1.45rem;
+  color: #fff;
+  font-weight: 800;
+}
+
+.detail-tagline {
+  font-size: 0.9rem;
+  color: var(--accent-cream);
+}
+
+.detail-body-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.detail-section h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--accent-butter);
+  margin-bottom: 8px;
+}
+
+.sec-text {
+  font-size: 0.94rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.sec-subtext {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.combines-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+}
+
+.combines-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  border: 1px solid rgba(254, 240, 138, 0.06);
+}
+
+.bullet-dot {
+  font-size: 0.85rem;
+}
+
+.detail-vibe-box {
+  background: linear-gradient(135deg, rgba(136, 19, 55, 0.35) 0%, rgba(69, 26, 3, 0.45) 100%);
+  border: 1px dashed rgba(254, 240, 138, 0.3);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+}
+
+.vibe-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-butter);
+  margin-bottom: 6px;
+}
+
+.vibe-quote {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 600;
+  color: #fff;
+}
+
+.detail-card-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(254, 240, 138, 0.1);
+}
+
+.ask-chat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gradient-brand);
+  color: #1a0a0d;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.ask-chat-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(250, 204, 21, 0.4);
+}
+
+/* ==========================================================================
+   18. ABA "RECEITAS" (RECIPES VIEW)
+   ========================================================================== */
+.recipes-tabs-nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.recipe-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(38, 15, 20, 0.6);
+  border: 1px solid var(--border-glass-subtle);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.recipe-tab-btn.active {
+  background: var(--primary-cherry);
+  border-color: var(--accent-butter);
+  color: var(--accent-butter);
+  box-shadow: 0 0 15px rgba(136, 19, 55, 0.4);
+}
+
+.recipe-main-card {
+  background: rgba(26, 10, 13, 0.85);
+  border: 1px solid rgba(254, 240, 138, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-bubble);
+}
+
+.recipe-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.recipe-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1a0a0d;
+  background: var(--accent-butter);
+  padding: 3px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 8px;
+}
+
+.recipe-title-wrapper h3 {
+  font-size: 1.55rem;
+  color: #fff;
+  font-weight: 800;
+}
+
+.recipe-subtitle {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.recipe-stats-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass-subtle);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  color: var(--accent-cream);
+}
+
+.recipe-description-intro {
+  font-size: 0.96rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(254, 240, 138, 0.1);
+}
+
+.recipe-grid-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 800px) {
+  .recipe-grid-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.recipe-ingredients-box h4,
+.recipe-steps-box h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-butter);
+  margin-bottom: 16px;
+}
+
+.ingredients-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ingredients-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(38, 15, 20, 0.5);
+  border: 1px solid rgba(254, 240, 138, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+}
+
+.ing-bullet {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-butter);
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.ing-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ing-item {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.ing-amount {
+  font-size: 0.78rem;
+  color: var(--accent-butter);
+}
+
+.steps-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.step-card {
+  display: flex;
+  gap: 14px;
+  background: rgba(38, 15, 20, 0.4);
+  border: 1px solid rgba(254, 240, 138, 0.08);
+  border-radius: var(--radius-md);
+  padding: 14px;
+}
+
+.step-number-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary-cherry);
+  color: var(--accent-butter);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--accent-butter);
+}
+
+.step-content h5 {
+  font-size: 0.95rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.step-content p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.golden-tips-box {
+  background: linear-gradient(135deg, rgba(69, 26, 3, 0.6) 0%, rgba(38, 15, 20, 0.7) 100%);
+  border: 1px solid var(--accent-gold);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.tips-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-butter);
+  margin-bottom: 12px;
+}
+
+.tips-header h5 {
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.tips-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tips-list li {
+  display: flex;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.recipe-card-footer {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(254, 240, 138, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.recipe-card-footer p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   19. ABA "GALERIA" (GALLERY VIEW)
+   ========================================================================== */
+.gallery-categories-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.cat-filter-btn {
+  background: rgba(38, 15, 20, 0.6);
+  border: 1px solid var(--border-glass-subtle);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cat-filter-btn.active {
+  background: var(--gradient-brand);
+  color: #1a0a0d;
+  font-weight: 700;
+  border-color: var(--accent-gold);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.gallery-card {
+  background: rgba(26, 10, 13, 0.85);
+  border: 1px solid rgba(254, 240, 138, 0.15);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-bubble);
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-butter);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(136, 19, 55, 0.3);
+}
+
+.gallery-card-visual {
+  height: 140px;
+  background: linear-gradient(135deg, rgba(38, 15, 20, 0.9) 0%, rgba(69, 26, 3, 0.8) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.brownie-visual-layer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brownie-visual-icon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
+  transition: transform var(--transition-fast);
+}
+
+.gallery-card:hover .brownie-visual-icon {
+  transform: scale(1.1);
+}
+
+.gallery-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1a0a0d;
+  background: var(--accent-butter);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.zoom-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+}
+
+.gallery-card-content {
+  padding: 16px;
+}
+
+.card-top-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card-top-info h3 {
+  font-size: 1.05rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.rating-pill {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.78rem;
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.card-texture-highlight {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.card-vibe-mini {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--accent-cream);
+}
+
+.vibe-icon-mini {
+  color: #f43f5e;
+}
+
+/* Modal de Zoom da Galeria */
+.gallery-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.25s ease;
+}
+
+.gallery-modal-card {
+  background: rgba(26, 10, 13, 0.95);
+  border: 1px solid var(--accent-gold);
+  border-radius: var(--radius-lg);
+  max-width: 480px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+  animation: scaleUpCard 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background var(--transition-fast);
+}
+
+.modal-visual-header {
+  height: 160px;
+  background: linear-gradient(135deg, var(--primary-cherry) 0%, #451a03 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.modal-large-emoji {
+  font-size: 5rem;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+}
+
+.modal-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1a0a0d;
+  background: var(--accent-butter);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-body h3 {
+  font-size: 1.4rem;
+  color: #fff;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.modal-details-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.modal-info-block {
+  background: rgba(38, 15, 20, 0.6);
+  border: 1px solid rgba(254, 240, 138, 0.1);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+
+.modal-info-block h4 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--accent-butter);
+  margin-bottom: 4px;
+}
+
+.modal-info-block p {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+}
+
+.modal-actions {
+  margin-top: 20px;
+}
+
+.modal-chat-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--gradient-brand);
+  color: #1a0a0d;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 12px 20px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.modal-chat-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(250, 204, 21, 0.4);
+}
+
