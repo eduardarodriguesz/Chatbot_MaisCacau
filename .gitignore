@@ -1,0 +1,84 @@
+# ===================================================
+# ARQUIVOS DE AMBIENTE E SEGURANÇA (CRÍTICO)
+# Impede o vazamento de chaves de API e variáveis
+# ===================================================
+.env
+.env.*
+*.env
+backend/.env
+frontend/.env
+frontend/.env.*
+!.env.example
+!backend/.env.example
+!frontend/.env.example
+
+# ===================================================
+# PYTHON / BACKEND
+# ===================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+
+# Ambientes virtuais
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ===================================================
+# NODE.JS / FRONTEND
+# ===================================================
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+dist-ssr/
+frontend/dist-ssr/
+*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ===================================================
+# VERCEL / SERVIÇOS DE DEPLOY
+# ===================================================
+.vercel
+.vercel/
+
+# ===================================================
+# SISTEMA OPERACIONAL & EDITORES
+# ===================================================
+.DS_Store
+Thumbs.db
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
